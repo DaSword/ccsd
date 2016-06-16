@@ -1,0 +1,137 @@
+@import "mixins";
+
+#app_callout_subview{
+    margin-top: 65px;
+    @include respond(portrait-tablets) {
+        display: none;
+    }
+    a{
+        color: $white;
+    }
+}
+
+.friends {
+	#content{
+		margin:0;
+	}
+}
+#searchResultsSubview {
+	background: #fff;
+
+	.friend-box {
+		float: left;
+		height: 210px;
+		width: 130px;
+
+		.location-mutual {
+			font-size: .85rem;
+		}
+	}
+}
+#suggested-friends {
+		.location-mutual, .profile-name {
+			font-size: .85rem;
+		}
+
+}
+#currentFriendsSubView {
+	.friend-box button, .redcheck:hover {
+		top: 25px;
+	    right: 40px;
+	}
+}
+	.tab-header {
+		background: #fff;
+	}
+
+	.tab-content {
+		margin-left: 0;
+		background: #fff;
+		margin-top: 20px;
+	}
+
+	#findSubview {
+		background: transparent;
+
+		.header-banner {
+			background: transparent;
+			text-align: left;
+		    font-family: "Armour-Condensed";
+			font-size: 1.5rem;
+			position: relative;
+			padding: 0 !important;
+			margin: 20px 0;
+			color: #222628;
+		}
+
+		#suggestedFriendsSubview {
+			background: #fff;
+		}
+	}
+
+	.tab-nav {
+		background: #fff;
+		border-radius: 0px !important;
+		right: 0;
+		width: auto !important;
+		@include respond(portrait-tablets) {
+			width: 100% !important;
+		}
+
+		li {
+			background-color: transparent;
+			cursor: pointer;
+			display: inline-block;
+			border-bottom: 3px solid transparent;
+			text-align: center;
+			padding: 0 20px;
+			@include boxShadow(none);
+			@include respond(portrait-tablets) {
+				width: 50% !important;
+			}
+
+			a {
+				color: #9297a3;
+				background-color: transparent;
+				border: none !important;
+				font-family: $font-condensed;
+				font-size: 1.125rem;
+				font-weight: normal;
+				line-height: 45px !important;
+				height: auto !important;
+				text-shadow: none;
+			}
+
+			&:hover,
+			&.active {
+				border-bottom: 3px solid #dc001c;
+				a {
+					background: transparent;
+					color: #222628;
+				}
+			}
+		
+		}
+	}
+
+	.view-more {
+		text-align: left;
+		float: left;
+
+        span {
+        	font-family: $font-family;
+			font-weight: 600;
+        	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	color: #fff;
+	font-size: 1rem;
+	letter-spacing: 1px;
+            margin-right: 10px;
+
+            &:after {
+                content: ' \25BC';
+                font-size: 0.85rem;
+            };
+        }
+    }

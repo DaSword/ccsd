@@ -1,0 +1,3069 @@
+@import "colors";
+@import "mixins";
+@import "feed/edit_menu";
+
+$logowidth: 96px;
+$toplinkpadding: 10px;
+$itemborder: #d5d6d7;
+$dark-border: #555;
+$commentcontainerborder: #d6d6d6;
+
+.row.feed-container {
+  @include respond(portrait-tablets) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    .banner-row {
+      padding: 0 !important;
+    }
+  }
+
+  #profile_stats p { 
+    margin: 0;
+  }
+
+  .about.no_profile_information{  
+      background: #f0f2f4;
+      p {
+        color: #9297a3;
+      }
+  }
+
+  #app_callout_subview {
+    float: left;
+    margin-top: 20px;
+    @include respond(portrait-tablets) {
+      display: none;
+    }
+  }
+}
+
+.feed {
+  .toggle-display {
+    display: none;
+  }
+}
+
+.feed .suggestedFriendsImage img {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.userProfileImage {
+  height: 75px;
+  width: 75px;
+  z-index: 1;
+
+  img {
+    border-radius: 50%;
+    background: #ccc;
+    height: 75px;
+    width: 75px;
+    @include respond(portrait-tablets) {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .feed-item & {
+    @include respond(portrait-tablets) {
+      height: 50px;
+      left: 20px;
+      top: 15px;
+      width: 50px;
+    }
+  }
+
+  .newPost & {
+    @include respond(portrait-tablets) {
+      display: none;
+    }
+  }
+
+  .feed-comment-container &,
+  .post-comment-area .image-textarea & {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+  }
+
+  .modal .post-comment-area .image-textarea & {
+    left: 0;
+  }
+
+  .modal .feed-comment-container & {
+    top: 13px; left: 14px;
+  }
+
+  .post-comment-area & {
+    top: 0 !important;
+  }
+
+  .modal .msg-post-header & {
+    top: 15px;
+    left: 10px;
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  &.repost-profile {
+    left: 20px;
+    top: 10px;
+
+    @include respond(portrait-tablets) {
+      left: 10px;
+      top: 10px;
+      width: 35px !important;
+      height: 35px !important;
+    }
+  }
+}
+
+/**************************************************************************/
+//Style for the feed modals that will popup when you link to a single feed
+body .modal.feed-item {
+    font: inherit;
+    line-height: inherit;
+
+
+    .icon-star {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      &.active {
+        color: orange;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: orange;
+      }
+    }
+
+    .content {
+      background: transparent;
+      overflow: hidden;
+      max-height: none;
+      height: 100%;
+      max-width: none;
+      width: 100%;
+      top: 0;
+
+      min-height: inherit !important;
+
+      .content-container{
+        position: relative;
+      }
+
+      .subview {
+        /*background: #000;
+        border: 1px solid $dark-border;*/
+        background: none;
+        border: none;
+        overflow: auto;
+        height: 90%;
+
+        @include respond(desktop) {
+          overflow: hidden;
+          overflow-y: scroll;
+        }
+      }
+
+      @include respond(portrait-tablets) {
+        height: 100%;
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+        top: 0 !important;
+      }
+
+      @include respond(tablets) {
+        .subview {
+          overflow-y: auto;
+        }
+      }
+
+      @include respond(portrait-tablets) {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        overflow-y: visible;
+        top: 0 !important;
+
+        .subview {
+          overflow-y: auto;
+        }
+      }
+
+      .post-details {
+        height: 100%;
+        padding: 0 !important;
+        max-width: none !important;
+
+        @include respond(tablets) {
+          height: auto;
+        }
+
+        @include respond(portrait-tablets) {
+          height: auto;
+        }
+      }
+
+      /*****************************************/
+      //Remove the share icon from the modal
+      .share-menu {display: none;}
+
+      /*****************************************/
+      //For tablets, make the section widths 100%, they are above each other
+      @include respond(tablets) {
+        .first-section {
+          min-height: 200px;
+          width: 100%;
+        }
+        .second-section {
+          width: 100%;
+        }
+      }
+
+      /*****************************************/
+      //For phones, make the image parent inherit the width, this is
+      //important when the image is of a small size
+      @include respond(portrait-tablets) {
+        .display-as-table{
+          height: auto !important;
+          width: inherit !important;
+        }
+      }
+
+      /*****************************************/
+      //Style the facebook and twitter mobile web share, appears at the top of modal.
+      .facebook-twitter-mobile-web{
+        display: none;
+        background: white;
+        height: 50px;
+
+        @include respond(portrait-tablets){
+          display: block;
+
+          .facebook,
+          .twitter {
+            padding: 7px 0 0 5px;
+          }
+        }
+
+        .share-container{
+          padding: 0px;
+          height: 100%;
+          padding: 5px 10px;
+          height: 100%;
+          text-align: left;
+
+          .share, .facebook, .twitter{
+            display: inline-block;
+            padding-top: 9px;
+            text-align: center;
+            height: 100%;
+            margin: 0;
+          }
+
+          .twitter{
+            border-right: 0px;
+          }
+        }
+
+      }
+
+      /*****************************************/
+      //Section Containing the feed contents, text, image, video
+      .first-section {
+        background: black;
+        height: 100%;
+
+        &.extension_modal {
+          background: white;
+
+          .workout-container {
+            vertical-align: top;
+            padding-bottom: 80px;
+
+            @include respond(portrait-tablets) {
+              padding-bottom: 40px;
+            }
+          }
+        }
+
+        @include respond("min-width: 1200px") {
+          width: 60% !important;
+        }
+
+        .post-text-container {
+          max-width: 0;   /* HS/MW - Wraps long words */
+
+          background: #9FA0A1;
+          padding-top: 40px;
+          padding-bottom: 40px;
+          padding-right: 60px;
+          padding-left: 60px;
+          word-wrap: break-word;
+
+          font-family: $font-light-condensed;
+          font-size: 56px;
+          line-height: 63px;
+          color: white;
+          border: 1px solid #999999;
+
+          //Over-ride padding when on phones
+          @include respond(portrait-tablets) {
+            padding-top: 15px;
+            padding-bottom: 3px;
+            padding-right: 7px;
+            padding-left: 7px;
+            font-size: 26px !important;
+            line-height: 32px !important;
+          }
+        }
+
+        .big-size-text{
+          font-size: 65px;
+          line-height: 72px;
+        }
+
+        .medium-size-text{
+          font-size: 40px;
+          line-height: 48px;
+        }
+
+        .small-size-text{
+          font-size: 26px;
+          line-height: 32px;
+        }
+
+        .post-text-container, .video-container, .friending-container, .workout-container{
+          vertical-align: middle;
+          display: table-cell;
+          text-align: center;
+          height: 100%;
+        }
+
+       .workout-container{
+          vertical-align: middle;
+
+        }
+
+        .image-container {
+          display: table-cell;
+          text-align: center;
+          height: 100%;
+          max-height: 100%;
+          width: 100%;
+
+          div.img {
+            background-size: contain !important;
+            height: 100%;
+            width: 100%;
+          }
+          img {
+            max-width: 100%;
+            height: 100%;
+            width: auto;
+          }
+
+          @include respond("max-width: 1200px") {
+            display: inline-block;
+
+            img {
+              display: inline-block;
+              vertical-align: middle;
+              width: auto;
+              height: auto;
+            }
+            &:before {
+              content: '';
+              height: 100%;
+              vertical-align: middle;
+              margin-right: -0.25em; /* Adjusts for spacing */
+            }
+          }
+        }
+
+        .video-container {
+          > div {
+            height: 100%;
+          }
+          .innerWrapper {
+            height: 100%;
+          }
+          video {
+            height: 100%;
+          }
+
+          @include respond(tablets) {
+            height: 580px;
+          }
+          @include respond(portrait-tablets) {
+            height: 200px;
+          }
+        }
+
+        .workout-container {
+          .row {
+            height: auto;
+          }
+
+          @include respond(portrait-tablets) {
+            height: auto;
+            padding: 0;
+            background: #fff;
+            border-top: 1px solid #ecedee;
+          }
+        }
+
+        .post-text-container {
+          @include respond(portrait-tablets) {
+            height: 300px;
+          }
+        }
+
+        .feed-item-add-friend-container{
+          background: white;
+          text-align: left !important;
+        }
+      }
+
+      /*****************************************/
+      //Section Containing the image container, this is added to center the image horizontally
+      .display-as-table{
+        display: table;
+      }
+
+      /*****************************************/
+      //Section containg the post and the comments on it
+      .second-section{
+        background: #fff;
+        margin-left: 0px;
+        padding-bottom: 10px;
+        height: 100%;
+        text-align: left;
+
+        @include respond("min-width: 1200px") {
+          width: 40% !important;
+          overflow: auto;
+        }
+
+        @include respond(portrait-tablets) {
+          height: inherit !important;
+        }
+
+        /*****************************************/
+        //Section containg the post header with its comments
+        .post-container {
+          background: #fff;
+
+          .row .columns {
+            margin: 0;
+          }
+
+          .row .four.columns {
+            width: 33.3% !important;
+          }
+
+          .row .six.columns {
+            width: 50% !important;
+          }
+
+          /*****************************************/
+          //Section for the poster info, post creator image, name and time created
+          .msg-post-header{
+            background: white;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            position: relative;
+
+            @include respond(tablets) {
+              .three {width: 11.95%;}
+            }
+          }
+
+          .postText {
+            background: #fff;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            padding: 15px;
+            color: #222;
+
+            &:empty {
+              padding: 0 20px;
+            }
+          }
+
+          .workout-container {
+            display: block;
+            vertical-align: middle;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+
+            @include respond(portrait-tablets) {
+              height: auto;
+            }
+
+            .row {
+              height: auto;
+            }
+
+            ul.workout-feed-item {
+              line-height: 40px;
+              min-height: auto;
+
+              li {
+                margin: 0;
+
+                .workout-icon {
+                  margin: 0 0 10px;
+                  line-height: 1rem;
+                }
+
+                &.description {
+                  font-size: 0.9rem;
+                }
+
+                &.magnitude {
+                  display: block;
+                }
+              }
+            }
+          }
+
+          /*****************************************/
+          //This section styles all the comments on the post
+          .comment-main-container {
+              /*******************/
+              .comment-container{
+                border-bottom: 1px solid #d6d6d6;
+                background: #f0f2f4;
+                border-top: 1px solid #d3d6dc;
+                padding: 15px;
+                position: relative;
+
+                .comment-text-controls {
+                  padding: 5px 0 5px 52px;
+
+                  .name {
+                    font-weight: bold;
+                    font-size: 0.9rem;
+                  }
+                  .time-ago {
+                    text-align: right;
+                    color: grey;
+                    font-size: small;
+                  }
+                  .comment {
+                    color: grey;
+                    font-size: 15px;
+                    line-height: 16px;
+                    padding-bottom: 10px;
+                    word-wrap:break-word;
+
+                    a {
+                      font-weight: bold;
+                    }
+                  }
+                }
+              }
+          }
+
+          .modal-footer{
+            border-top: 1px solid $light-border-color;
+            position: relative;
+
+            div {
+              display: inline-block;
+              float: right;
+            }
+            .share-container {
+              width: 100%;
+              position: relative;
+            }
+
+            .flag-content {
+              right: 0;
+              top: 0;
+              position: absolute;
+              padding: 10px 15px;
+
+              .icon-flag {
+                color: #999;
+
+                &:hover {
+                  color: #555;
+                }
+              }
+            }
+
+            @include respond(portrait-tablets){
+              display: none;
+            }
+
+            .row{
+              text-align: center;
+              .featuredToggleContainer {
+                cursor: pointer;
+                padding: 10px 15px;
+                text-align: center;
+                border: 1px solid black;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                background: black;
+                color: white;
+
+                .icon-minus-circled{
+                  color: red;
+                  margin: 0px;
+                }
+                .icon-plus-circled{
+                  color: green;
+                  margin: 0px;
+                }
+                #feature-text {
+                  font-size: 20px;
+                  font-family: $font-condensed;
+                  letter-spacing: 1px;
+                }
+                &.hide {
+                  display:none !important;
+                }
+              }
+            }
+          }
+        }//End of the post container
+      }//End of second-section
+
+      .loadingcomments {
+        display: none;
+      }
+    }
+
+    .delete-post .content {
+        min-width: 40%;
+        max-width: 40%;
+        padding: 30px 10px !important;
+        text-align: center;
+    }
+}
+
+.feed .feed-item,
+.modal.feed-item {
+
+    .like-comment-buttons {
+        background-color: #fff;
+        outline: none;
+        border-bottom: 1px solid #d3d6dc;
+        border-top: 1px solid #d3d6dc;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+
+        .one.columns {
+          width: 15px !important;
+          margin-left: 20px !important;
+        }
+
+        @include respond(portrait-tablets) {
+            .four.columns {
+              float: left !important;
+              width: 33% !important;
+
+              label {
+                display: none;
+              }
+            }
+            .six.columns {
+              float: left !important;
+              width: 50% !important;
+            }
+            .one.columns {
+              width: 20px !important;
+            }
+            .one {
+              float: left !important;
+              width: 10% !important;
+              
+              &.support_toggle {
+                float: right !important;
+              }
+            }
+        }
+
+        button {
+          color: rgba(102, 102, 102, 0.4);
+          cursor: pointer;
+          border-style: none;
+          font-size: 20px;
+          line-height: 50px;
+          background-color: transparent;
+          width: 100%;
+          outline: none;
+          padding: 0;
+
+          &:hover {
+            color: #000;
+          }
+
+          &.support-btn {
+            &:hover ul {
+                display: block;
+                top: 10px;
+                right: 0;
+                z-index: 999;
+                @include respond(portrait-tablets) {
+                  top: 40px;
+                }
+            }
+            &:focus ul {
+              display: block;
+              top: 10px;
+              right: 0;
+              z-index: 999;
+              @include respond(portrait-tablets) {
+                top: 40px;
+              }
+            }
+          }
+
+          span {
+            padding: 0 5px;
+            font-family: $font-condensed;
+            text-align: center;
+            letter-spacing: 1px;
+            vertical-align: top;
+            @include respond(portrait-tablets) {
+              display: none;
+            }
+          }
+
+          i {
+            &.record-icon {
+              font-family: 'RecordIcons';
+              font-size: 16px;
+              vertical-align: top;
+
+              &.like-icon {
+                &:before {
+                  content: 'l';
+                }
+              }
+
+              &.support-icon {
+                font-family: "entypo";
+                &:before {
+                  font-family: "entypo";
+                  content: "\e6ce";
+                }
+              }
+
+              &.comment-icon {
+                &:before {
+                  content: 'h';
+                }
+              }
+
+              &.repost-icon {
+                &:before {
+                  content: 'o';
+                  font-size: 1.375rem;
+                  line-height: 1em;
+                  vertical-align: text-top;
+                }
+              }
+            }
+          }
+
+          &.like {
+            &:hover,
+            &:active {
+              i {
+                color: #DC001C;
+              }
+            }
+          }
+
+          &.liked {
+              color: #000;
+            i {
+              color: #DC001C;
+            }
+          }
+
+          &.comment {
+            &:hover,
+            &:active,
+            &.commented {
+
+              color: #000;
+              i {
+                color: #0559E1;
+              }
+            }
+          }
+
+          &.repost-btn {
+            &:hover,
+            &:active,
+            &.commented {
+
+              color: #000;
+              i {
+                color: #24B42E;
+              }
+            }
+          }
+        }
+
+        .support_share {
+          display: none;
+          border: 1px solid #d3d6dc;
+          background: #fff;
+          position: absolute;
+          z-index: 2;
+          width: 150px;
+
+          li {
+            text-align: center;
+            border-top: 1px solid #d3d6dc;
+            margin: 0;
+            font-family: $font-condensed;
+            font-weight: 500;
+            color: #222628;
+            font-size: 1rem;
+
+            &.fb_share_item {
+              &.inactive {
+                opacity: .3;
+
+                &:hover {
+                  cursor: default;
+                }
+              }
+              i {
+                color: #3b5a95;
+              }
+            }
+
+            &.twit_share_item {
+              &.inactive {
+                opacity: .3;
+                a {
+                    &:hover {
+                      cursor: default;
+                    }
+                }
+              }
+              a {
+                display: block;
+
+                i {
+                  color: #00b8fc;
+                }
+              }
+            }
+
+            &.report-content {
+              i {
+                color: #999;
+              }
+            }
+
+            &:hover {
+              background: #f0f2f4;
+              color: #9297a3;
+            }
+
+
+              &:first-child {
+                border-top: 0;
+              }
+          }
+        }
+
+        .six.columns button.comment {
+          border-right: none;
+        }
+    } // like-comment-buttons
+
+    .likes-comments-count {
+        padding: 0 20px 0;
+        background-color: #f0f2f4;
+        text-transform: lowercase;
+        border-top: 1px solid #d3d6dc;
+        width: 100%;
+        display: inline-block;
+
+        span {
+            display: inline-block;
+            margin: 0 9px 0 0;
+            color: #222628;
+            font-size: 1rem;
+            line-height: 49px;
+
+            &.hide {
+              display: none;
+            }
+
+            strong {
+              font-family: $font-family;
+              color: #222;
+            }
+        }
+
+        .likes .like-user > span {
+            margin: 0;
+        }
+
+        .likes .like-user:last-child > span {
+            display: none;
+        }
+
+        .reposts {
+           cursor: pointer;
+
+           &:hover {
+             color: #444;
+           }
+         }
+
+        .likes {
+          cursor: pointer;
+
+          &:hover {
+            color: #444;
+          }
+        }
+    } // like-comments-count
+
+    .user-controls {
+        background-color: #fff;
+        padding: 15px 0 15px 20px;
+        border-bottom: none;
+        position: relative;
+
+        @include respond(portrait-tablets) {
+          padding-bottom: 0;
+        }
+
+        .title {
+            padding: 0;
+
+            h3 {
+              font-family: $font-family;
+              font-weight: 700;
+              font-size: .8rem;
+              letter-spacing: 1px;
+              color: #222;
+              margin-bottom: 10px;
+            }
+
+            p {
+                margin: 0;
+                color: #999;
+                padding: 0;
+                line-height: normal;
+
+                &.name-status {
+                    a {
+                        color: #222;
+                        font-family: $font-family;
+                        font-weight: 700;
+                        font-size: 1.2rem !important;
+
+                        &:hover {
+                            color: #666;
+                        }
+                    }
+
+                    .repost-type {
+                      text-transform: none;
+                    }
+
+                    span {
+                        color: #999;
+                        font-size: 1.1rem;
+                    }
+                }
+
+                &.time {
+                    font-size: 0.9rem;
+                    color: #9a9a9a;
+                }
+            }
+
+            @include respond(portrait-tablets) {
+                padding-left: 45px;
+
+                p.name-status a, p.name-status span {
+                  font-size: 80%;
+                }
+
+                p.time {
+                  font-size: 0.9rem !important;
+                }
+            }
+        }
+
+        .title.repost-title {
+          margin-left: 0;
+          padding-left: 20px;
+          @include respond(portrait-tablets) {
+            padding-left: 45px;
+          }
+        }
+
+        button.gallery-feature {
+            border: 0;
+            background: transparent;
+            font-size: 1rem;
+            padding: 2px 0 0 0;
+            outline: none;
+            float: right;
+
+            &.show {
+                display: inline-block;
+            }
+
+            &:hover {
+                color: orange;
+            }
+        }
+
+
+
+        .controls {
+            float: left;
+            margin: 0;
+
+            > li {
+              border-right: 1px solid #ccc;
+              text-align: center;
+              float: right;
+              min-width: 40px;
+              height: 20px;
+              margin: 0;
+
+              label {
+                line-height: 20px;
+              }
+
+              &:first-child {
+                border-right: 1px solid transparent;
+              }
+            }
+
+            @include respond(portrait-tablets) {
+                display: none !important;
+            }
+        }
+    }
+
+    .deleteFeedItem:hover {
+        cursor: pointer;
+    }
+
+    p,
+    .postText {
+      word-wrap: break-word;
+      font-size: 1rem;
+      line-height: 1.375rem;
+      margin: 0;
+      padding: 0 20px 20px;
+      white-space: pre-wrap;
+
+      &:empty {
+        padding: 0 20px;
+      }
+
+      a {
+        font-weight: 700;
+        color: #444749;
+
+        &:hover {
+          color: #555;
+        }
+        &.outbound-link {
+          color: #da001b;
+          font-weight: 400;
+        }
+      }
+
+      @include respond(portrait-tablets) {
+        padding: 0 10px 15px !important;
+      }
+    }
+
+    .postText {
+      padding: 55px 20px 20px;
+    }
+
+    p.name-status {
+      line-height: 1rem;
+      padding: 20px 0 5px;
+    }
+    p.time, p.name-status span {
+      color: #9297a3;
+    }
+    @include respond(portrait-tablets) {
+      p.name-status {
+        padding-bottom: 0;
+        padding-top: 10px;
+      }
+      p.time {
+        font-size: .8rem;
+        line-height: 1rem;
+      }
+    }
+
+    .visuals {
+        background: #fff;
+        line-height: 1;
+        margin: 0;
+        position: relative;
+        @include respond(portrait-tablets) {
+            margin: 0 -10px;
+            @include boxShadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+    }
+
+    .first-section {
+      position: relative;
+    }
+    #multi_image_pagination {
+      cursor: pointer;
+      color: #fff;
+      position: relative;
+      top: 4px;
+      padding: 10px 0;
+
+      span {
+        margin: 0 70px;
+      }
+      a {
+        cursor: pointer;
+        color: #fff;
+        position: relative;
+        top: 5px;
+        font-size: 30px;
+
+        &.disabled {
+          cursor: default;
+          color: #555;
+        }
+      }
+    }
+    .mediaContainer {
+        font-size: 0;
+        line-height: 1;
+        text-align: center;
+
+        img {
+          width:  auto;
+          height: 500px;
+        }
+    }
+    .attachments1, .attachments0 {
+      width: 100%;
+    }
+    .attachments2 {
+      .mediaContainer {
+        background: black;
+        margin-top: 2px;
+        img {
+          height: 225px;
+        }
+      }
+      .video-container {
+        height: 238px;
+        img {
+          height: 238px;
+          width: 100%;
+        }
+      }
+    }
+    .attachments3 {
+      .mediaContainer {
+        img {
+          height: 225px;
+        }
+      }
+      div {
+        width: 49.2%;
+        margin-right: 1%;
+        display: inline-block;
+        margin-top: 1%;
+
+        &:first-child  {
+          width: 100%;
+        }
+        &:nth-child(odd) {
+          margin-right: 0;
+        }
+        &.image0 {
+          top: 0;
+        }
+      }
+    }
+    //for all multiple attachements
+    @for $i from 2 through 25 {
+      .attachments#{$i} {
+        .workout-highlights {
+          width: 100%;
+        }
+      }
+    }
+    //if more than four attachements
+    @for $i from 4 through 25 {
+      .attachments#{$i} {
+          display: inline-block;
+
+
+          .mediaContainer {
+            background: #000;
+                img {
+                  height: 225px;
+                }
+          }
+
+          div {
+            width: 49.5%;
+            float: left;
+            margin-top: .85%;
+
+            &.image0, &.image1 {
+              margin-top: 0;
+            }
+
+            div {
+              width: 100%;
+            }
+
+            &:nth-child(even) {
+              margin-right: 0;
+              float: right;
+            }
+            &:nth-of-type(3) {
+              clear: left;
+            }
+            &:nth-of-type(4) {
+              clear: right;
+            }
+          }
+      }
+    }
+
+    &.workout .post-content:not(.has-attachments) {
+        /*.postText {
+            margin-left: 15px;
+            margin-right: 15px;
+        }*/
+    }
+
+    .has-attachments .workout-highlights {
+        bottom: 0;
+        background: #f0f2f4;
+
+        .workout-icon {
+            margin: 0 10px 0 0;
+        }
+
+        ul {
+          border-right: 1px solid #d3d6dc;
+          min-height: 100px;
+
+          &:last-child {
+              border-right: 0;
+          }
+
+          li {
+            &.magnitude {
+              color: #222628;
+            }
+
+            &.description {
+              color: #222628;
+            }
+          }
+        }
+    }
+
+    .has-attachments {
+      position: relative;
+
+      .workout-highlights {
+
+        .vs {
+          background: transparent !important;
+        }
+        h3 {
+          color: #fff;
+        }
+      }
+    }
+    .activity_type {
+        background: #f0f2f4;
+        position: relative;
+        z-index: 9;
+        padding: 10px;
+        margin: 0;
+    }
+    .workout-highlights {
+        background: #fff;
+        padding: 0;
+        width: 100%;
+
+        &.row {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          position: relative;
+          margin: 0;
+        }
+
+        &.details {
+          h4 {
+            font-size: 22px;
+            color: #fff;
+            background-color: #000;
+            font-family: $font-condensed;
+            float: left;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+          }
+
+          .columns {
+            &.six {
+              line-height: 60px;
+              font-size: 22px;
+              color: #222;
+              font-family: $font-condensed;
+              width: 45% !important;
+              margin-left: 5%;
+              border-top: 1px solid #d6d6d6;
+               &:nth-child(even) {
+                margin-left: 0;
+                margin-right: 5%;
+               }
+            }
+          }
+        }
+
+        ul {
+          border-right: 1px solid #d3d6dc;
+
+          &:last-child {
+              border-right: 0;
+          }
+        }
+
+        .columns {
+          margin: 0;
+          &.four {
+            width: 33.3% !important;
+            .magnitude {
+              font-size: 1.5rem;
+              line-height: 1.5rem;
+              font-weight: 500;
+
+              @include respond(portrait-tablets) {
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+              }
+
+              i {
+                margin-right: 5px;
+                @include respond(portrait-tablets) {
+                  display: block;
+                  font-size: 1.25rem;
+                  line-height: 0.5rem;
+                }
+              }
+            }
+            @include respond(portrait-tablets) {
+              width: 33.3% !important;
+              float: left;
+            }
+          }
+
+          &.six {
+            width: 50% !important;
+            float: left;
+          }
+        }
+
+      }
+
+      .workout-feed-item {
+          text-align: center;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          padding: 10px 0;
+          min-height: 150px;
+          position: relative;
+          @include respond(portrait-tablets) {
+            min-height: 130px;
+          }
+
+          .vs {
+            color: #9A9A9A;
+            font-family: $font-condensed;
+            letter-spacing: 1px;
+            font-size: 30px;
+            position: absolute;
+            right: -25px;
+            top: 50px;
+            background: white;
+            padding: 10px;
+            @include respond(portrait-tablets) {
+              top: 40px;
+              font-size: 27px;
+              right: -24px;
+            }
+          }
+
+          h2 {
+            padding: 0;
+            color: #aaa;
+            font-size: 30px;
+            font-family: $font-condensed;
+            line-height: 21px;
+            margin-top: 20px;
+
+            &.win {
+              color: #24B42E;
+            }
+            &.loss {
+              color: #DC001C;
+            }
+          }
+          h3 {
+            padding: 0;
+            margin-top: 20px;
+            font-size: 60px;
+            font-family: $font-condensed;
+            color: #222;
+            line-height: 45px;
+          }
+
+          li {
+              margin: 10px 10px 0;
+              color: rgba(102,102,102,0.4);
+
+              i {
+                background: none;
+                height: 22px;
+
+                &.workout-icon {
+                  display: inline-block;
+                  font-family: 'RecordIcons';
+                  font-size: 1.375rem;
+
+                  &.workout-distance,
+                  &.workout-steps {
+                  }
+
+                  &.workout-avgpace {
+                    font-size: 2rem;
+                    line-height: 0.3em;
+
+                    &:after {
+                      content: "p";
+                      display: inline-block;
+                      margin-top: 10px;
+                      padding-bottom: -5px;
+                      vertical-align: sub;
+                    }
+                  }
+
+                  &.workout-duration,
+                  &.workout-avgspeed {
+                  }
+
+                  &.workout-calories {
+                  }
+                }
+              }
+
+              &.magnitude {
+                  font-family: $font-condensed;
+                  color: #222;
+                  font-size: 2.5rem;
+                  @include respond(portrait-tablets) {
+                    font-size: 1.5rem;
+                  }
+
+                  .metric {
+                    @include respond(portrait-tablets) {
+                      font-size: 1rem;
+                    }
+                  }
+              }
+
+              &.description {
+                font-family: $font-condensed;
+                font-size: 1.125rem;
+                color: #c2c2c2;
+
+                  @include respond(portrait-tablets) {
+                    font-size: 0.9rem;
+                    letter-spacing: 1px;
+                  }
+              }
+          }
+      }
+
+    .white {
+        color: #fff;
+    }
+
+    &.photo {
+        .imageContainer {
+            margin: 0;
+            text-align: center;
+            line-height: 0;
+        }
+
+      @include respond(portrait-tablets) {
+        $font-size: 20px;
+
+        display: table;
+        padding: 0;
+        font-size: 0;
+        line-height: 1;
+        height: 100%;
+
+        ul.workout-feed-item {
+          border-width: 0 1px 0 0;
+          display: table-cell;
+          line-height: 1;
+          padding: 10px;
+
+          &.six.columns {
+            width: 50% !important;
+          }
+
+          &.four.columns {
+            width: 33.3% !important;
+          }
+
+          li {
+            display: block;
+            height: auto;
+            line-height: 30px;
+          }
+
+          .description {
+            font-size: 0.9rem;
+          }
+
+          .workout-icon {
+            display: block;
+            font-size: 1.275rem;
+          }
+
+          .magnitude {
+            font: 26px/26px $font-light-condensed;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .visible-comments,
+    .view-more-comments,
+    .post-comment-area {
+        border-collapse: collapse;
+        border-top: 0;
+    }
+
+    .visible-comments.has-comments {
+      border-bottom: 1px solid $commentcontainerborder;
+
+      &.commenting-open {
+        border-bottom: 0;
+      }
+    }
+
+    .embed {
+        display: none !important;
+
+        &.show {
+            display: inline-block !important;
+        }
+
+        @include respond(portrait-tablets) {
+            &.show {
+                display: none !important;
+            }
+        }
+
+        button {
+            background: transparent;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+
+            .icon-code {
+                font-size: 25px;
+                color: #333;
+            }
+        }
+    }
+
+    textarea.embed-code {
+        background: white;
+        padding: 10px;
+        word-wrap: break-word;
+        border: 1px solid #dadada;
+        margin: 10px 0;
+        width: 100%;
+        min-height: 100px;
+        color: #444;
+
+        @include respond(portrait-tablets) {
+            display: none;
+        }
+    }
+}
+
+/**************************************************************************/
+//This is the style for the potential friend row in the friending feed item,
+//it is made global so that we apply it to the feed item in the dashboard and
+//the feed item in the modal popup
+.feed .feed-item-add-friend-container {
+  background: #FFF;
+  height: auto;
+
+  .userInfo {
+    padding-left: 10px;
+  }
+
+  .img-container, .userInfo, .addBtn{
+    line-height: 100px;
+
+    .addFriend {
+      background-color: #000;
+      font-size: 1.375rem;
+      letter-spacing: 0.05em;
+      line-height: 50px;
+      float: right;
+      margin: 25px 25px 25px 0;
+      height: 50px;
+      cursor:pointer;
+      border: none;
+
+      a {
+        padding: 0 20px;
+        font-family: 'Armour-Condensed';
+        font-weight: 500;
+      }
+
+      &:hover {
+        background-color: #464d52;
+      }
+    }
+
+  }
+  .two-line{
+    line-height: 95px;
+    color: black;
+    font-size: 18px;
+  }
+}
+
+/**************************************************************************/
+//Start of the feed item list-item style
+#feed {
+  min-width: 300px;
+
+  .header-banner {
+    margin: 0 0 20px !important;
+  }
+
+  .update, .complete {
+    .header-banner {
+        margin: 0 !important;
+        background: #f0f2f4;
+    }
+  }
+}
+
+.feed {
+    li {
+        margin: 0 0 20px 0;
+        padding-bottom: 0;
+        @include respond(portrait-tablets) {
+          margin: 0 0 15px 0;
+        }
+
+        > .content {
+            background: #f3f3f3;
+        }
+    }
+
+    @include respond(portrait-tablets) {
+      .feed-item {
+          position: relative;
+      }
+    }
+
+    .post-content {
+        padding: 0;
+        // do not consolodate border properties
+        border-color: $itemborder;
+        border-style: solid;
+        margin: 0;
+        background: #fff;
+
+        > .row {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+    }
+
+    .openDetails, .group .post-content, .update .post-content, .complete .post-content{
+        &:hover {
+          cursor: pointer;
+        }
+    }
+
+    .workout .post-content {
+      padding: 0;
+    }
+
+    &.pending .post-content {
+      border-bottom: 1px solid $itemborder;
+    }
+
+    .post-edit-content {
+      padding: 20px 15px 8px;
+      background: #ecedee;
+      border-bottom: 1px solid $itemborder;
+      display: none;
+
+      &:after {
+        content: '';
+        clear: both;
+        display: block;
+      };
+
+      textarea {
+        width: 100%;
+        height: 110px;
+        background: #fff;
+        border: 1px solid #e1e1e1;
+        padding: 10px;
+        font-family: $font-light;
+        font-size: 1rem;
+      }
+
+      .edit-post-btns {
+        text-align: right;
+
+        .post-edit-btn {
+          width: auto;
+          margin-left: 15px;
+        }
+      }
+    }
+
+    .video-container {
+      position: relative;
+      line-height: 0;
+      background: #000;
+    }
+
+    .img-container {
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+    .comments-outer {
+        background: #d3d6dc;
+
+        .feed-comment-container {
+            background: #f0f2f4 !important;
+            border-top: 1px solid #d3d6dc;
+            padding: 15px;
+            position: relative;
+
+
+            .userProfileImage {
+              img {
+                height: 50px;
+                width: 50px;
+              }
+            }
+
+            .userInfo {
+                padding: 0 0 0 60px;
+                line-height: 1.1rem;
+
+                @include respond(portrait-tablets) {
+                  padding: 0 0 0 70px;
+                }
+
+                .name {
+                    font-weight: 600;
+                    line-height: 18px;
+                    font-size: 1rem;
+                    color: #222;
+                }
+
+                .comment {
+                    font-size: 0.95em;
+                    color: #616161;
+                    line-height: 18px;
+                    word-wrap: break-word;
+                    margin: 0;
+
+                    a {
+                      font-weight: bold;
+                    }
+                    p {
+                      padding-left: 0;
+
+                      @include respond(portrait-tablets) {
+                        padding: 0 0 5px;
+                      }
+                    }
+                }
+            }
+        }
+
+        @include respond(portrait-tablets) {
+            padding: 0 !important;
+        }
+    }
+}
+.update, .complete {
+  .title {
+    @include respond(portrait-tablets) {
+      padding-left: 10px !important;
+    }
+
+  }
+}
+.feed .feed-item-group-update-container, .feed .feed-item-group-ended-container {
+  background: #fff;
+
+  .title {
+    padding-left: 0;
+  }
+
+  .columns {
+    text-align: center;
+    padding: 40px 0 20px;
+    border-right: 2px solid #ecedee;
+    float: left;
+
+    &:last-child {
+      border-right: 0;
+      border-bottom: 0;
+    }
+    h4 {
+        font: bold 1rem $font-family;
+        color: rgba(102, 102, 102, 0.4);
+        letter-spacing: 2px;
+        text-align: center;
+    }
+    h2 {
+        font: bold 2.5rem $font-condensed;
+        color: #222;
+        font-weight: normal;
+        text-align: center;
+    }
+    i {
+        &.ranked {
+          &:after {
+            color: #9fa4a7;
+            content: "r";
+            font-family: 'RecordIcons';
+            font-size: 30px;
+
+            @include respond(portrait-tablets) {
+              font-size: 19px;
+            }
+          }
+        }
+
+        &.ends {
+          &:after {
+            color: #5FC067;
+            font-family: 'RecordIcons';
+            font-size: 30px;
+            content: "D";
+
+            @include respond(portrait-tablets) {
+              font-size: 19px;
+            }
+          }
+        }
+        &.weight {
+          &:after {
+            color: #1998e7;
+            font-family: 'RecordIcons';
+            font-size: 30px;
+            content: "b";
+
+            @include respond(portrait-tablets) {
+              font-size: 19px;
+            }
+          }
+        }
+    }
+  }
+
+  @include respond(portrait-tablets) {
+    .columns {
+      width: 80% !important;
+      margin-left: 10% !important;
+      border-right: 0;
+      border-bottom: 1px solid #ecedee;
+      padding: 10px 0;
+
+      h4 {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        display: inline-block;
+        width: 55%;
+        text-align: left;
+      }
+      h2 {
+        font-size: 1.5rem;
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+      }
+      i {
+        display: inline-block;
+        font-size: 1.375rem;
+        position: relative;
+        top: 5px;
+        width: 10%;
+      }
+    }
+  }
+}
+.feed .feed-item-group-ended-container {
+  .columns {
+    padding: 20px 0 30px;
+
+    i {
+      font-size: 3rem;
+      display: inline;
+      position: relative;
+      top: .8rem;
+      margin-right: 1rem;
+
+      @include respond(portrait-tablets) {
+        margin: 0 auto 30px;
+      }
+    }
+
+    h2 {
+      display: inline;
+    }
+  }
+}
+.feed .feed-item.group {
+  .post-content {
+    background-image: url('../img/feed/feed_challenge_steps_bg.jpg');
+    height: 345px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #000;
+  }
+
+  .footer {
+    background-color: white;
+    border: 1px solid #cdcdcd;
+    outline: none;
+    border-collapse: collapse;
+    padding: 6px 15px;
+    .people_invited {
+      display: inline-block;
+    }
+    .deny_invite {
+      display: inline-block;
+      text-align: right;
+      float: right;
+    }
+  }
+  @include respond(portrait-tablets) {
+    .post-content {
+      height: auto;
+    }
+  }
+}
+
+  .challenge_timespan {
+    div {
+      color: #fff;
+      font-family: $font-condensed;
+      font-size: 24px;
+
+      &.five {
+        padding: 15px 0;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+      &.two {
+        padding: 15px 0;
+        font-family: 'RecordIcons';
+      }
+    }
+  }
+  .feed-item-group-invite-container {
+    text-align: center;
+
+    .challenge_type {
+      background: #000;
+      font-size: 18px;
+      letter-spacing: .05em;
+      font-family: $font-condensed;
+      color: #fff;
+      padding: 7px 20px;
+      display: inline-block;
+      margin-top: 25px;
+    }
+    .challenge_title {
+      font-family: $font-condensed;
+      color: #fff;
+      padding: 20px;
+      font-size: 40px;
+      line-height: 2rem;
+      margin: 30px 0 20px;
+    }
+    .challenge_accepted {
+          color: #fff;
+          font-family: $font-condensed;
+          font-size: 27px;
+          padding: 15px 0;
+          border-top: 1px solid #fff;
+          border-bottom: 1px solid #fff;
+
+          @include respond(portrait-tablets) {
+            margin: 20px 0 0 25.41667% !important;
+            width: 49.16667% !important;
+            padding: 10px 0 !important;
+          }
+    }
+    .primary-btn {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    @include respond(portrait-tablets) {
+      .challenge_title.columns.five.centered {
+        font-size: 2rem;
+          margin-top: 20px;
+      }
+      .challenge_timespan {
+        .five {
+          margin-top: 20px;
+          border: none;
+          width: 40.69444% !important;
+          float: left;
+          font-size: 1rem;
+        }
+        .two {
+          width: 15.27778% !important;
+          float: left;
+          padding-top: 30px !important;
+        }
+      }
+
+    }
+  }
+
+// Repost overrides
+.feed .feed-item.repost {
+  .repost-original-controls {
+    background: #f0f2f4;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &+ .post-content {
+      background: #f0f2f4;
+      padding: 0 20px 20px;
+    }
+  }
+
+  .user-controls:first-child {
+    border-bottom: none;
+  }
+
+  .repost-content {
+    padding: 0;
+    border-top: none;
+    a {
+      font-weight: bold;
+    }
+  }
+
+  .postText {
+    padding-top: 0;
+    padding-left: 0;
+    line-height: 1.4em;
+    white-space: pre-wrap;
+
+    @include respond(portrait-tablets) {
+      padding-left: 55px;
+    }
+  }
+}
+
+.modal.feed-item {
+  .repost-content {
+    background: #ecedee;
+    padding: 20px 15px 15px 15px;
+    a {
+      font-weight: bold;
+    }
+    p {
+
+      &:empty {
+        padding: 0;
+      };
+    }
+  }
+
+  .user-controls.original-content {
+    background-color: #fff;
+    border-top: 1px solid #ccc !important;
+    padding: 20px !important;
+
+    > p { padding: 0 0 15px; }
+
+    a.original-post-link {
+      font-weight: bold;
+    }
+
+    .repost-profile {
+      position: relative;
+      border-radius: 50%;
+      float: left;
+      top: 0;
+      left: 0;
+      margin-right: 5px;
+    }
+
+    .repost-title {
+      float: left;
+      width: auto;
+
+      .name-status a {
+        font-weight: bold;
+      }
+    }
+
+    .repost-text {
+      width: 100%;
+      overflow: auto;
+      padding: 10px 0 0 0;
+      line-height: 1.4em;
+    }
+  }
+}
+
+.post-comment-area {
+  background: #fff !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  position: relative;
+  height: 70px;
+  border-bottom: 1px solid $commentcontainerborder;
+
+
+  .mentions-autocomplete-list {
+    position: relative;
+    z-index: 999999;
+
+    ul {
+      margin: 0;
+    }
+  }
+  .mentions {
+    margin: 0 125px 0 75px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    font-size: .9rem;
+    height: 34px;
+
+    div {
+      strong {
+        color: #ddd;
+          font-size: .9rem;
+        span {
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+
+  @include respond(portrait-tablets) {
+     > .row {
+       padding-right: 0 !important;
+       padding-left: 0 !important;
+    }
+  }
+
+  &.active {
+    padding: 11px 0 9px 0;
+  }
+
+  &.hide {
+    padding-top: 10px;
+  }
+
+  .image-textarea {
+    position: relative;
+
+    .userProfileImage {
+      img {
+        height: 35px;
+        width: 35px;
+      }
+    }
+
+    .comment-textarea {
+      width: 100%;
+      padding: 0 125px 0 75px;
+      position: relative;
+
+      &.false{
+        padding-left: 10px;
+      }
+
+      @include respond(portrait-tablets) {
+        padding: 0 21%;
+        width: 95%;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+        font-family: $font-light;
+        padding: 10px 10px 0;
+        border: 1px solid #dadada;
+        color: #888;
+        height: 35px;
+        position: relative;
+        background: transparent;
+        font-size: .9rem;
+      }
+    }
+  }
+
+  .post-comment-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 105px;
+    float: right;
+
+    .max-textarea-length {
+      font-size: small;
+      line-height: 2em;
+      color: grey;
+    }
+
+    button[disabled=disabled], button:disabled {
+      pointer-events: none;
+      cursor: default;
+      &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: text-bottom;
+        width: 30px;
+        height: 30px;
+        background: url('../img/ajax-loader.gif') no-repeat center;
+        background-size: cover;
+      }
+    }
+
+    @include respond(portrait-tablets) {
+      padding-bottom: 10px;
+      width: 20%;
+
+      button {
+        font-size: 1rem;
+        padding: 0 10px !important;
+        height: 35px;
+        line-height: 35px;
+        min-height: 35px;
+      }
+    }
+  }
+
+}
+
+
+.subview .mentions-input-box {
+  position: relative;
+  text-align: left;
+  font-size: .9rem;
+
+  textarea {
+    padding: 10px !important;
+    position: relative;
+    font-size: .9rem !important;
+    background: transparent !important;
+  }
+
+  .mentions-autocomplete-list {
+    position: relative;
+    z-index: 999999;
+
+    ul {
+      margin: 0;
+    }
+  }
+  .mentions {
+    padding: 10px;
+    font-size: .9rem;
+    height: 108px;
+    width: 65%;
+    margin: 0;
+
+    div {
+      strong {
+        color: #ddd;
+          font-size: .9rem;
+        span {
+          color: #000;
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+}
+// Modal overrides
+.modal.feed-item {
+  // Hide text on base item -- showing already
+  &.base, &.repost-feed {
+    .post-container .postText {
+      display: none;
+    }
+  }
+
+  &.base.photo, &.base.video {
+    .post-container .postText {
+      display: inherit;
+    }
+  }
+
+  &.repost-feed {
+    .post-container .postText {
+      display: none;
+    }
+  }
+
+  .msg-post-header {
+    min-height: 80px;
+
+    .userProfileImage {
+      display: none;
+    }
+
+    .title {
+      padding: 5px !important;
+    }
+
+    p.name-status a, p.time, p.name-status span {
+      font-size: inherit !important;
+    }
+  }
+
+  .user-controls {
+
+    .userProfileImage {
+      display: block;
+    }
+
+    .controls {
+      display: none;
+    }
+  }
+
+  .likes-comments-count {
+    border-bottom: 1px solid $commentcontainerborder;
+    border-right:0 !important; border-left:0 !important;
+  }
+
+  .like-comment-buttons {
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #d3d6dc;
+    border-top: 1px solid #d3d6dc;
+
+    @include respond(portrait-tablets) {
+      .one.colums {
+        float: left !important;
+        width: 10% !important;
+      }
+    }
+
+  }
+
+  .visible-comments {
+    border: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+
+  .post-comment-area {
+    padding: 10px 15px;
+    height: auto;
+    border:0;
+    background: transparent !important;
+
+    .comment-textarea {
+      padding: 0 0 0 48px;
+
+      &.false {
+        padding-left: 0px;
+      }
+
+      textarea {
+        background: white;
+      }
+    }
+
+    .post-btn {
+
+      .max-textarea-length {
+        font-size: 0.8rem;
+        line-height: 2em;
+        margin: 0 10px 0 50px;
+        color: #bbb;
+        @include respond(portrait-tablets) {
+          margin: 0 10px 0 40px;
+        }
+      }
+
+      .post-comment-btn {
+        position: static;
+        @include respond(portrait-tablets) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+#feed, #feed-featured, .modal.feed-item {
+  .deleteBtn {
+    text-align: right;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+
+    .control {
+      font-size: 0.9em;
+      color: #7c7c7c;
+
+      a {
+        visibility: hidden;
+      }
+
+      &:hover a {
+        font-weight: bold;
+        color: #212121;
+        visibility: visible;
+      }
+    }
+
+    @include respond(portrait-tablets) {
+      position: static;
+      text-align: left;
+      padding: 0;
+      font-size: 0.8rem;
+
+      .control a {
+        visibility: visible;
+      }
+    }
+    @include respond(tablets) {
+      text-align: right;
+      padding-top: 7px;
+      padding-right: 20px;
+      position: absolute;
+      right: 0;
+      top: 10px;
+      font-size: 0.8rem;
+
+      .control a {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+#feed, #featured-items-slider, .modal.feed-item {
+  .feed-comment-outer button.view-more-comments,
+  .comments-outer button.view-more-comments {
+    background: #f0f2f4;
+    text-align: left;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 0;
+    border: none;
+    text-align: center;
+
+    span {
+      font-size: 1.125rem;
+      font-family: $font-condensed;
+      color: #222628;
+
+      &:hover {
+        color: #888;
+      }
+    }
+  }
+
+  & .feed-comment-outer button.view-more-comments {
+    background: transparent;
+  }
+}
+
+#feed .view-more {
+  text-align: center;
+  float: none;
+}
+
+.sub-header{
+  font-family: $font-condensed;
+  font-size: 1.375rem;
+  font-weight: 500;
+  position: relative;
+  margin: 20px 0;
+}
+
+.subtitle{
+  color: #222628;
+  font-family: $font-condensed;
+  font-weight: 500;
+  font-size: 1.5rem;
+    @include respond (portrait-tablets) {
+      padding-left: 20px;
+    }
+}
+
+.connections {
+  .find-follow-link {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: #fff;
+    font-weight: 500;
+
+    &:hover {
+      color: $white
+    }
+  }
+
+  footer{
+    background:#fff;
+  }
+
+  .actions{
+    text-align: center;
+
+    .findMore-btn{
+      border: none;
+      display: inline-block;
+      background-color: #000;
+      width: 100%;
+      margin-bottom: 20px;
+      max-width: 300px;
+      min-height: 50px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      font-family: $font-condensed;
+      font-size: 1.375rem;
+      line-height: 3.125rem;
+      padding: 0 20px !important;
+      outline: none;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  .view-details{
+    margin: 0 auto;
+  }
+
+  #suggested-connections{
+    background-color: #fff;
+  }
+
+  .name{
+    font-family: $font-condensed;
+    font-size: 20px;
+    color: $medium-gray;
+  }
+
+  .description{
+    font-size: small;
+    font-family: $font-condensed;
+    font-style: italic;
+    color: $medium-gray;
+  }
+
+  .friend-box{
+    margin-top: 0px;
+
+    .loading-spinner{
+      width: 10px;
+      height: 10px;
+    }
+
+  }
+}
+
+
+.base, .friending, .suggestedFriends {
+  .content-container {
+    padding-top: 220px;
+  }
+  .suggestedFriendsImage{
+      padding: 10px 0 0 18px;
+      display: inline-block;
+  }
+
+  .flexslider {
+    border-radius: 0;
+    background: #ecedee;
+    border-top: 1px solid #d5d6d7;
+  }
+}
+
+.suggestedFriends{
+  .feed-item-add-friend-container {
+    border-bottom: 1px solid #dedfe0;
+    height: auto;
+    padding: 0 20px;
+  }
+  .userInfo{
+    div{
+      color: black;
+      font-size: 15px;
+      line-height:55px;
+    }
+  }
+  .name-status {
+    span {
+      font-family: $font-light-condensed;
+      font-size: 35px!important;
+      color: #000 !important;
+    }
+  }
+  .time {
+    letter-spacing: 2px;
+    padding-top: 5px;
+    color: #9297a3;
+  }
+}
+
+.video-type{
+  #playerwrapperModal .video, #playerwrapperModal .midroll{
+    padding:0;
+  }
+}
+
+#feed, #feed-featured {
+  .feed-items {
+    padding: 0;
+
+    @include respond (portrait-tablets) {
+      padding: 0 5px;
+    }
+  }
+
+
+}
+
+// Feed type toggle and header
+.activity-feed-header {
+  position: relative;
+  margin: 20px 0 0 0;
+  font-size: 20px;
+  @include boxShadow(0 2px 2px rgba(0,0,0,0.3));
+
+  .toggle-display {
+    position: absolute;
+    left: 0; top: 0;
+    display: none;
+
+    .show-label {
+      display: inline-block;
+      margin: 0 10px 0 0;
+    }
+
+    .viewMyPosts, .viewAllPosts, .viewPublicPosts, .viewAllPhotos, .viewAllVideos, .viewAllStatus, .viewAllWorkouts {
+      color: rgba(255,255,255,0.6);
+      padding: 0 30px;
+      display: inline-block;
+      line-height: 46px;
+
+      &:hover, &.active {
+        color: #f7f7f7;
+        background-color: rgb(48, 53, 57);
+      }
+    }
+  }
+
+  @include respond(portrait-tablets) {
+      span.feed-name {
+        visibility: hidden;
+      }
+
+      .toggle-display {
+        left: 0;
+
+        .show-label {
+          display: none;
+        }
+
+        .viewMyPosts, .viewAllPosts, .viewPublicPosts {
+          padding: 0;
+          width: 32.3% !important;
+          text-align: center;
+        }
+
+        .viewAllPosts {
+          width: 34%;
+        }
+      }
+    }
+}
+.feed {
+  .quit-button-column {
+    height: 10%;
+    min-height: 42px;
+    width: 100%;
+
+    @include respond(portrait-tablets) {
+      padding-top: 10px;
+    }
+    @include respond(tablets) {
+      padding-top: 10px;
+    }
+
+    &.close {
+      position: static !important;
+    }
+
+    a {
+      cursor: pointer;
+      border-radius: 50%;
+      float:right;
+      background: white;
+      height: 33px; width: 33px;
+      color: $medium-gray;
+      font-size: 29px;
+      margin:0;
+      text-align: center;
+      line-height: 33px;
+
+      @include respond(portrait-tablets) {
+        margin-right: 5px;
+      }
+      @include respond(tablets) {
+        margin-right: 5px;
+      }
+
+      i {
+        margin:0;
+      }
+
+      &:hover {
+        background: #eee;
+      }
+    }
+  }
+}
+
+.full-width{
+  width: 100% !important;
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  { //ipad specific
+  .suggestedFriendsImage {
+    padding: 0 !important;
+  }
+}
+
+#upload_progress_container {
+  display: none;
+  margin-top: 10px;
+}
+
+#cancel-upload-btn {
+  width: 18%;
+  margin-left: 2%;
+}
+
+#upload_progress {
+  background: #949494;
+  float: left;
+  width: 80%;
+
+  .bar {
+    width: 0;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+  }
+}
+
+// Post details page
+body.post-details {
+
+  .nav-wrap {
+    z-index: 5;
+
+    .links * {
+      z-index: 5;
+    }
+  }
+
+  .body-wrapper {
+    position: fixed;
+  }
+
+  .modal.feed-item {
+    background: transparent;
+    z-index: 0;
+
+    .content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .subview {
+      border: 0;
+      padding-bottom: 100px;
+      height: inherit;
+      overflow: auto;
+    }
+
+    .modal-controls {
+      text-align: left;
+
+      .dashboard-link {
+        font-size: 1.4rem;
+        font-family: $font-family;
+      }
+
+      .x-button-container {
+        display: none;
+      }
+
+      @include respond(desktop) {
+        margin: 40px 0 0 0;
+      }
+    }
+
+    @include respond(tablets) {
+
+      position: relative;
+      height: auto;
+
+      .content {
+        overflow: initial;
+      }
+    }
+
+    @include respond(portrait-tablets) {
+
+      position: relative;
+      height: auto;
+
+      .content {
+        overflow: initial;
+      }
+    }
+  }
+
+  @include respond(portrait-tablets) {
+    .modal .inner-content {
+      height: auto;
+    }
+  }
+  @include respond(tablets) {
+    .modal .inner-content {
+      height: auto;
+    }
+  }
+}
+
+.twitter-emoji {
+  height: 18px;
+  width: 19px;
+  padding: 0 0.05em 0 0.1em;
+  vertical-align: -0.2em;
+  margin-right: 5px;
+}
+
+.icon_emoji {
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 132px;
+  top: 5px;
+  background: url('../img/feed/icon_emoji.png') top right no-repeat;
+
+  @include respond(portrait-tablets) {
+    right: 25%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.emoji_helper {
+  display: none;
+  width: 180px;
+  padding: 10px;
+  height: 137px;
+  position: absolute;
+  top: -145px;
+  z-index: 3;
+  background: #D1D1D1;
+  border-radius: 6px;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-top: 8px solid #D1D1D1;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+
+  @include respond(portrait-tablets) {
+    right: 0;
+
+    &:after {
+      left: auto;
+      right: 12px;
+    }
+  }
+
+  ul {
+    margin: 2px;
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+
+      a {
+        width: 22px;
+        height: 22px;
+        overflow: hidden;
+        display: block;
+        background: url('../img/feed/emoji_sprite.png') top left no-repeat;
+
+        &.beer{ background-position: 0 0;}
+        &.boom{ background-position: 0 -72px;}
+        &.cake{ background-position: 0 -144px;}
+        &.clap{ background-position: 0 -216px;}
+        &.cloud{ background-position: 0 -288px;}
+        &.facepunch{ background-position: 0 -360px;}
+        &.grimacing{ background-position: 0 -432px;}
+        &.heart{ background-position: 0 -504px;}
+        &.laughing{ background-position: 0 -576px;}
+        &.muscle{ background-position: 0 -648px;}
+        &.ok_hand{ background-position: 0 -720px;}
+        &.persevere{ background-position: 0 -792px;}
+        &.pizza{ background-position: 0 -864px;}
+        &.sleeping{ background-position: 0 -936px;}
+        &.smile{ background-position: 0 -1008px;}
+        &.snowflake{ background-position: 0 -1080px;}
+        &.sunny{ background-position: 0 -1152px;}
+        &.sweat{ background-position: 0 -1224px;}
+        &.sweat_smile{ background-position: 0 -1296px;}
+        &.thumbsdown{ background-position: 0 -1368px;}
+        &.thumbsup{ background-position: 0 -1440px;}
+        &.triumph{ background-position: 0 -1512px;}
+        &.trophy{ background-position: 0 -1584px;}
+        &.umbrella{ background-position: 0 -1656px;}
+      }
+    }
+  }
+}
+
+.post-details{
+  .icon_emoji {
+    right: 10px;
+  }
+  .emoji_helper {
+    right: 0;
+
+    &:after {
+      left: auto;
+      right: 0;
+      top: auto;
+    }
+  }
+}
+
+.tooltip {
+  text-transform: none;
+  position:relative;
+  border-bottom: 2px dotted rgb(34, 34, 34);
+  white-space: nowrap;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+#info_tooltip {
+  position: absolute;
+  line-height: normal;
+  padding: 10px;
+  background: #41484d;
+  color: #fff;
+  z-index: 2;
+  border-radius: 5px;
+
+
+  &:after {
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #41484d;
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 13px;
+  }
+}
+
+
+.feed-item.status {
+  .postText {
+    padding: 0 20px 20px !important;
+  }
+}

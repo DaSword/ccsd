@@ -1,0 +1,34 @@
+<% if (logged_in) { %>
+	<section id="profile-summary"></section>
+<% } else { %> 
+	<div class="challenge-page-banner">
+	    <div class="row">
+	        <img src="https://res.cloudinary.com/mapmyfitness/image/upload/v1449775343/Challenges-Icon-2x_km4hle.png" />
+	        <h3><%= Locales.headers.title %></h3>
+	    </div>
+	    <hr>
+	</div>
+<% } %>
+
+<div class="row">
+	<div  class='four columns push_eight'>
+    	<div class='app_callout_subview_challenges' id='app_callout_subview'></div>
+ 	</div>
+	<div class='columns eight pull_four' id="challenge_container" style="margin-top: 40px;">
+		<% if (logged_in) { %>
+			<div class="row">
+				<div class="sub-banner" class="columns twelve">
+					<a href="/challenge/">
+						&lt; <%= Locales.headers.back %>
+					</a>
+				</div>
+			</div>
+		<% } %>
+		<div class="row" style="margin-top: 20px;">
+			<section id="challenge_sidebar" class="six pull_one columns"></section>
+			<section id="challenge_leaderboard" class='six columns'><div class="loading"></div></section>
+		</div>
+	</div>
+
+	<!--  Sidebar modules here -->
+<div>

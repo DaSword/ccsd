@@ -1,0 +1,54 @@
+<section class="ten centered columns">
+    <header>
+      <div class="most_challenge_type">
+                <%= goal_statement %>
+    </div>
+    </header>
+    <h3>
+        &ldquo;<%= name %>&rdquo;
+    </h3>
+
+        <% 
+            var now = new Date();
+            var enddate = new Date(end_datetime);
+            if (enddate < now) {
+        %>
+
+        <div class="challenge_timespan ended" style="padding-bottom: 10px;">
+            <h4 style="margin-bottom: 0;"><%= locales.headers.challenge_ended %></h4>
+            <div><%= starts %></div>
+            <div class="arrow"> > </div>
+            <div><%= ends %></div>
+        </div>
+
+        <% } else { %>
+            <div class="challenge_timespan">
+                <h4><%= locales.headers.ends_in %> <%= countdownToEnd %></h4>
+            </div>
+        <% } %>
+    </div>
+
+    <section class="social">
+        <span>Share</span>
+        <a class="shareFacebookPage shareFacebook"></a>
+        <a href="<%= twitterSharePageUrl %>" target="_blank">
+            <i class="icon-twitter"></i>
+        </a>
+    </section>
+    
+    <a class="show_rules" data-hide-rules="<%= locales.headers.hide_rules %>" data-show-rules="<%= locales.headers.show_rules %>">
+        <%= locales.headers.show_rules %>
+    </a>
+    <section id="rules" class="columns twelve centered">
+        <%= locales.rules[challenge_type.toLowerCase()] ? locales.rules[challenge_type.toLowerCase()].replace('{{start_day}}', start_day).replace('{{end_day}}', end_day).replace('{{timezone}}', timezone).replace('{{timezone}}.', timezone + '.') : '' %>
+    </section>
+
+
+    <% if (show_membership_buttons) { %>
+      <div class="row">
+        <div class="primary-btn">
+          <a class="join_challenge"><%= locales.headers.join %></a>
+        </div>
+      </div>
+    <% } %>
+</section>

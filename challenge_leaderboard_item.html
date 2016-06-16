@@ -1,0 +1,61 @@
+<%
+    var active_prev = prev_leaderboard ? 'active' : '';
+    var active_next = next_leaderboard ? 'active' : '';
+%>
+
+<% if(first_load) { %>
+    <% if (prev_leaderboard || next_leaderboard){ %>
+        <nav class="columns twelve">
+            <a class="prev_leaderboard <%= active_prev %>"></a>
+            <span><%= start_day %> - <%= end_day %></span>
+            <a class="next_leaderboard <%= active_next %>"></a>
+        </nav>
+    <% } %>
+    <header class="columns twelve">
+        <div class="columns seven"><%= locales.headers.opponents %></div>
+        <% var label =  data_type_field.label ? data_type_field.label : '' %>
+        <div class="columns five"><%= label.replace('_lost', '') %></div>
+    </header>
+<% } %>
+<ul class="columns twelve">
+    <% _.each(list, function(friend, i) { %>
+        <%
+        var current_percent = friend.original_value === top_value ? '100%' : (friend.original_value/top_value)*100+ '%';
+        var active_user = User.id == friend._links.user[0].id ? 'active_user' : '';
+        %>
+        <li class="row <%= active_user %>">
+            <div class="columns one challenge_place">
+                <% if(first_load) { %>
+                    <%= i+1 %>.
+                <% } else { %>
+                    <%= i+21 %>.
+                <% } %>
+            </div>
+            <div class="columns six challenge_member" data-friend-id="<%=friend._links.user[0].id %>">
+                <div class="feed">
+                    <a href="/u/<%= friend.id %>/" class="suggestedFriendsImage">
+                        <img style="width: 50px; height: 50px;" src="https://drzetlglcbfx.cloudfront.net/profile/<%= friend.id %>/picture?size=Medium" alt="<%= friend.display_name %>">
+                    </a>
+                </div>
+                <div class="challenge_member_details">
+                    <p class="challenge_member_name"><%= friend.first_name %> <%= friend.last_name %></p>
+                    <p class="challenge_member_location">
+                        <%= friend.location.locality %> <%= friend.location.region %>
+                    </p>
+                </div>
+            </div>
+            <div class="columns five challenge_value">
+                <span><%= friend.leaderboard_value %> <%= friend.unit %></span>
+                <div class="progress">
+                    <div class="progress_bar" style="width: <%= current_percent %>; max-width: 100%;"></div>
+                </div>
+            </div>
+        </li>
+    <% }); %>
+</ul>
+<% if(load_more == true) { %>
+<div id="challenge_leaderboard_1" class="leaderboard_more"></div>
+<div id="challenge_leaderboard_2" class="leaderboard_more"></div>
+
+<div id="load_more_leaderboard"><a><%= locales.headers.load_more %><span class="arrow"></span></a></div>
+<% } %>

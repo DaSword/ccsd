@@ -1,0 +1,34 @@
+<div class="desktop">
+    <header class="columns twelve">
+    <%
+        var have_joined_string = count > 1 ? locales.headers.people_have.replace('{{count}}', count) : locales.headers.one_person_has.replace('{{count}}', count);
+    %>
+        <%= have_joined_string %>
+    </header>
+    <ul class="columns twelve unauthed_leaderboard_list">
+        <% _.each(list, function(friend, i) { %>
+            <li class="row">
+
+                <div class="columns one challenge_place">
+                    <%= i+1 %>.
+                </div>
+
+                <div class="columns six challenge_member" data-friend-id="<%=friend._links.user[0].id %>">
+                    <div class="feed">
+                        <a href="/u/<%= friend.id %>/" class="suggestedFriendsImage">
+                            <img style="width: 45px; height: 45px;" src="https://drzetlglcbfx.cloudfront.net/profile/<%= friend.id %>/picture?size=Medium" alt="<%= friend.display_name %>">
+                        </a>
+                    </div>
+                    <div class="challenge_member_details">
+                        <p class="challenge_member_name"><%= friend.first_name %> <%= friend.last_initial %></p>
+                        <p class="challenge_member_location">
+                            <%= friend.location.locality %> <%= friend.location.region %>
+                        </p>
+                    </div>
+                </div>
+
+            </li>
+        <% }); %>
+    </ul>
+</div>
+

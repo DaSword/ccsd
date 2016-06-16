@@ -1,0 +1,106 @@
+<nav>
+	<div class='links'>
+		<h1 title="Under Armour Record">
+			<%= Locales.title %>
+
+	    		<a href="/" class='logo'>
+		    		<i class="record-logo"></i>
+	    		</a>
+    	</h1>
+	<% if (!logged_in) { %>
+		<a class="login-link" href="/login" >
+			<span><%= Locales.logged_out.log_in %></span>
+		</a>
+		<a href="/register" class='register primary-btn'>
+			<%= Locales.logged_out.signup %>
+		</a>
+	<% } else { %>
+		<div class="main-links">
+			<a href="/me" class="dashboard current">
+				<span><%= Locales.logged_in.feed %></span>
+			</a>
+			<a href="/me/friends/" class="friends">
+				<span><%= Locales.logged_in.friends %></span>
+			</a>
+			<a href="/challenge/" class="challenges">
+				<span><%= Locales.logged_in.challenges %></span>
+			</a>
+			<a href="/me/profile" class="profile">
+				<span><%= Locales.logged_in.profile %></span>
+			</a>
+		</div>
+	   <% } %>
+	</div>
+	<input type='checkbox' id='toggle'>
+	<div class='user-menu'>
+		<% if (logged_in) { %>
+			<section class="search-container field append">
+				<input type="text" class="navbar-search-box normal text input" maxlength="100" placeholder="Search" />
+			</section>
+			<section class="hover-area">
+				<label for='toggle' class='login-settings'>
+					<i class='icon icon-close'></i>
+				</label>
+				<ul>
+					<li class="menu-search field append">
+						<input type="text" class="navbar-search-box normal text input" maxlength="100" placeholder="Search" />
+					</li>
+					<li class="dashboard-link">
+						<a href='/me'>
+							<span><%= Locales.logged_in.feed %></span>
+						</a>
+					</li>
+					<li class="findFollowMenuItem" >
+						<a href='/me/friends/'>
+							<span><%= Locales.logged_in.friends %></span>
+						</a>
+					</li>
+					<li class="challenges-link">
+						<a href='/challenge/'>
+							<span><%= Locales.logged_in.challenges %></span>
+						</a>
+					</li>
+					<li class="profile-link">
+						<a href='/me/profile'>
+							<span><%= Locales.logged_in.profile %></span>
+						</a>
+					</li>
+					<li>
+						<a href='/settings'>
+							<span><%= Locales.logged_in.settings %></span>
+						</a>
+					</li>
+					<li>
+						<a href='/settings/connect'>
+							<span><%= Locales.logged_in.devices %></span>
+						</a>
+					</li>
+					<li class="open-in-app-link" >
+						<a href='#'>
+							<span><%= Locales.logged_in.open_in_app %></span>
+						</a>
+					</li>
+					<li class="support-link" >
+						<a href='http://uarecord.zendesk.com' target="_blank">
+							<span><%= Locales.logged_in.support %></span>
+						</a>
+					</li>
+					<li>
+						<a href='' rel='logout'>
+							<span><%= Locales.logged_in.log_out %></span>
+						</a>
+					</li>
+				</ul>
+			</section>
+		<% } else { %>
+			<span class="login-settings unauthed">
+				<a href='/login' class='login-button'>
+					<span><%= Locales.logged_out.log_in %></span>
+				</a>
+				<a href="/register" class='register primary-btn'>
+					<%= Locales.logged_out.signup %>
+				</a>
+			</span>
+		<% } %>
+	</div>
+</nav>

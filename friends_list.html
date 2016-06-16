@@ -1,0 +1,3 @@
+<% _.each(list, function(friend) { %>
+	<%= friendTemplate({friend: friend, friend_type: friend.friend_type, locales: locales}) %>
+<% }); %>

@@ -1,0 +1,176 @@
+<div class='registration'>
+  <section id='app-callout'>
+    <div class="row mmf-login">
+      <div class="two columns logo">
+        <img src="https://res.cloudinary.com/mapmyfitness/image/upload/v1447881866/register_mmflogos_zp1p2n.png">
+      </div>
+      <div class="ten columns details">
+        <div class="twelve columns title">
+          <%= locales.remember_header %>
+        </div>
+         <div class="twelve columns details">
+           <%= locales.login_copy %>
+        </div>
+        <div class="twelve columns info">
+          <%= locales.copy_accounts %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class='content'>
+    <section class="modal-body">
+      <div class="loading hide"></div>
+      <div class="row header">
+        <div class="privacy-failed-message"></div>
+      </div>
+      <div class="row contents">
+        <div class="twelve columns breadcrumb-row">
+          <ul class="breadcrumb">
+            <li class='current'><span> <%= locales.breadcrumb.register %></span></li>
+            <li><span><%= locales.breadcrumb.photo %></span></li>
+            <li><span><%= locales.breadcrumb.interests %></span></li>
+            <li><span><%= locales.breadcrumb.athletes %></span></li>
+            <li><span><%= locales.breadcrumb.friends %></span></li>
+          </ul>
+        </div>
+        <div class="twelve columns right-column">
+          <div class="row header">
+            <div class="twelve columns text-center">
+              <h1><%= locales.main_header %></h1>
+            </div>
+          </div>
+            <div class="row">
+              <div class="twelve columns facebook-column">
+                <% if (privacy) { %>
+                <p style="display: block; font-weight: bold; padding-bottom: 10px;" class="login-failed-message"><%= locales.post %></p>
+                <% } %>
+                <div class="medium info btn icon-left entypo icon-facebook-squared button-wrapper register-facebook-width"><a href="#"><%= locales.register_facebook_btn %></a></div>
+                <div class="facebook-failed-message"></div>
+              </div>
+            </div>
+            <% if (is_eu) { %>
+              <div class="row">
+                <div class="twelve columns text-snippet terms-conditions">
+                  <div class="row tos-row" style="margin-bottom: 10px;">
+                    <div class="tos-checkbox">
+                      <input id="checkbox-fb" class="checkbox-custom" name="tos_fb" type="checkbox">
+                      <label for="checkbox-fb" class="checkbox-custom-label"></label>
+                    </div>
+                    <div class="tos-copy">
+                      <%= locales.eu_terms_copy %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+            <div class="row or-column">
+              <div class="twelve columns centered">
+                <div class="row">
+                  <div class="four columns separator">
+                    <hr/>
+                  </div>
+                  <div class="four columns or">
+                    <%= locales.register_email %>
+                  </div>
+                  <div class="four columns separator">
+                    <hr/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <form autocorrect="off" autocapitalize="on" spellcheck="false">
+            <section class="input-fields">
+              <div class="row">
+                <div class="six columns first-name">
+                <label><%= locales.labels.first_name %></label>
+                  <div class="field">
+                    <input class="input height" type="text" name="first_name" autocorrect='off' autocapitalize='off' autocomplete='off' />
+                  </div>
+                </div>
+                <div class="six columns last-name">
+                  <label><%= locales.labels.last_name %></label>
+                  <div class="field">
+                    <input class="input height" type="text" name="last_name" autocorrect='off' autocapitalize='off' autocomplete='off' />
+                  </div>
+                </div>
+              </div>
+              <div class="row email">
+                <div class="twelve columns">
+                  <label><%= locales.labels.email_address %></label>
+                  <div class="field">
+                    <input class="input height" type="text" name="email" autocorrect='off' autocapitalize='off' autocomplete='off' />
+                  </div>
+                </div>
+              </div>
+              <div class="row password">
+                <div class="twelve columns">
+                  <label><%= locales.labels.password %></label>
+                  <div class="field">
+                    <input class="input height" type="password" name="password" autocorrect='off' autocapitalize='off' autocomplete='off' />
+                  </div>
+                </div>
+              </div>
+              <div class="row gender-birthdate">
+                <div class="six columns gender">
+                  <label><%= locales.labels.gender %></label>
+                  <div class="row">
+                    <input type="radio" name="gender" value="M" id="male-radio">
+                    <label for="male-radio"><%= locales.gender_male_label %></label>
+                    <input type="radio" name="gender" value="F" id="female-radio">
+                    <label for="female-radio"><%= locales.gender_female_label %></label>
+                  </div>
+                </div>
+                <div class="six columns birthdate">
+                  <label><%= locales.labels.birthday %></label>
+                  <div class="field">
+                     <input id="birthday-pick"  data-model-attribute="birthdate" class="input height" type="text" placeholder="<%= locales.labels.birthdate_format %>" name="birthdate" />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="row">
+              <p class="register-failed-message"></p>
+              <div class="centered eight columns control-btn-wrapper">
+                <div class="btn common-control-btn registration-btn">
+                  <input type='submit' value="<%= locales.breadcrumb.register %>" >
+                </div>
+              </div>
+            </div>
+            <div class="twelve columns text-snippet terms-conditions">
+              <div class="row tos-row">
+                <div class="tos-checkbox">
+                  <input id="market_consent" class="checkbox-custom" name="market_consent" type="checkbox" checked>
+                  <label for="market_consent" class="checkbox-custom-label"></label>
+                </div>
+                <div class="market-copy">
+                  <%= locales.marketing_consent %>
+                </div>
+              </div>
+              <% if (!is_eu) { %>
+                <div class="row" style="margin-bottom: 10px;">
+                    <%= locales.terms_copy %>
+                </div>
+              <% } %>
+              <% if (is_eu) { %>
+                <div class="row tos-row" style="margin-bottom: 10px;">
+                  <div class="tos-checkbox">
+                    <input id="checkbox" class="checkbox-custom" name="tos" type="checkbox">
+                    <label for="checkbox" class="checkbox-custom-label"></label>
+                  </div>
+                  <div class="tos-copy">
+                    <%= locales.eu_terms_copy %>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+            <div class="row desktop-view">
+              <div class="twelve columns text-snippet add-padding-bottom add-bold">
+                <%= locales.account_exists_copy %>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

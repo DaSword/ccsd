@@ -1,0 +1,114 @@
+<div class='login'>
+  <section id='app-callout'>
+    <div class="row mmf-login">
+      <div class="two columns logo">
+        <img src="https://res.cloudinary.com/mapmyfitness/image/upload/v1447881866/register_mmflogos_zp1p2n.png">
+      </div>
+      <div class="ten columns details">
+        <div class="twelve columns title">
+          <%= locales.remember_header %>
+        </div>
+        <div class="twelve columns details">
+          <%= locales.login_copy %>
+        </div>
+        <div class="twelve columns info">
+          <%= locales.copy_accounts %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class='content'>
+    <!-- LOGGINGIN MODAL -->
+    <section class="modal-body">
+      <div class="loading hide"></div>
+      <div class="row header">
+        <!-- ADD BREADCRUMB MENU HERE -->
+      </div>
+      <!-- contents -->
+      <div class="row contents">
+        <!-- Center column -->
+        <div class="twelve columns right-column">
+          <!-- Header -->
+          <div class="row header">
+            <div class="twelve columns text-center">
+              <h1><%= locales.main_header %></h1>
+            </div>
+          </div>
+          <!-- Facebook row -->
+          <div class="row">
+            <div class="twelve columns facebook-column">
+              <div class="medium info btn icon-left entypo icon-facebook-squared button-wrapper register-facebook-width">
+                <a><%= locales.login_facebook_btn_label %></a>
+              </div>
+              <div class="facebook-failed-message"></div>
+            </div>
+          </div>
+          <!-- OR row -->
+          <div class="row or-column">
+            <div class="twelve columns centered">
+              <div class="row">
+                <div class="four columns separator">
+                  <hr/>
+                </div>
+                <div class="four columns or add-bold">
+                  <%= locales.register_email %>
+                </div>
+                <div class="four columns separator">
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form id="login-form">
+            <!-- Fields Section row -->
+            <section class="input-fields">
+              <!-- email field row -->
+              <div class="row email">
+                <div class="eleven centered columns">
+                  <label><%= locales.email_address%></label>
+                  <div class="field">
+                    <input class="input height" type="text" name="email" autocorrect='off' autocapitalize='off' autocomplete='on' />
+                  </div>
+                </div>
+              </div>
+              <!-- password field row -->
+              <div class="row password">
+                <div class="eleven centered columns">
+                  <label><%= locales.password %></label>
+                  <div class="field no-margin-bottom">
+                    <input class="input height" type="password" name="password" autocorrect='off' autocapitalize='off' autocomplete='on' />
+                  </div>
+                </div>
+              </div>
+              <!-- Forget password -->
+              <div class="row forget-password">
+                <div class="eleven centered columns text-snippet">
+                  <a href='' class="switch forgot-password"><%= locales.forgot_password %></a>
+                </div>
+              </div>
+              <!-- Control Button row -->
+              <div class="row">
+                <p class="login-failed-message"></p>
+                <div class="centered eight columns control-btn-wrapper">
+                  <div class="btn common-control-btn registration-btn">
+                    <button><%= locales.log_in_btn_label %></button>
+                  </div>
+                </div>
+              </div>
+              <!-- Do not have account password -->
+              <div class="row">
+                <div class="eleven centered columns text-snippet add-bold">
+                  <%= locales.register_copy %> <a class="register" href="/register"><%= locales.register_btn_label %></a>
+                </div>
+              </div>
+              <div class="twelve columns text-snippet terms-conditions">
+                <%= locales.terms_copy %>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- End of modal body section -->
+  </div>
+</div>

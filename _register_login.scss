@@ -1,0 +1,992 @@
+@import "colors";
+@import "fonts";
+@import "settings";
+
+.login .content {
+  max-height: 750px !important;
+}
+
+//.registration .content {
+//  max-height: 950px !important;
+//}
+
+.login, .registration {
+
+  .columns {
+    margin-left: 0;
+    padding-right: 10px;
+  }
+
+
+  .checkbox-custom {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .checkbox-custom, .checkbox-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .checkbox-custom-label{
+    position: relative;
+    font-size: 12px;
+    margin-right: 20px;
+  }
+
+  .checkbox-custom + .checkbox-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 1px solid #d3d6dc;
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    text-align: center;
+  }
+  .checkbox-custom:checked + .checkbox-custom-label:after {
+    content: '';
+    display: inline-block;
+    background-image: url("../img/svg/plus_icon.svg");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+  }
+
+  .checkbox-custom:checked + .checkbox-custom-label:before {
+    background: #469125;
+  }
+
+  .checkbox-custom:focus + .checkbox-custom-label {
+    outline: 1px solid #ddd; /* focus style */
+  }
+
+  .breadcrumb-row {
+    border-bottom: 1px solid #d3d6dc;
+    background: #f0f2f4;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .breadcrumb {
+    list-style: none;
+    overflow: hidden;
+    font: 18px $font-family;
+    @include respond(portrait-tablets) {
+      font: 12px $font-family;
+    }
+    margin-bottom: 0;
+  }
+  .breadcrumb li {
+    float: left;
+    padding-bottom: 0;
+    @include respond(portrait-tablets) {
+      max-width: 20%;
+      font-size: 9px;
+      padding: 3px 0;
+    }
+  }
+
+  .breadcrumb li span {
+    color: #d3d6dc;
+    text-decoration: none;
+    padding: 10px 0 10px 45px;
+    @include respond(portrait-tablets) {
+      padding: 0 0 0 20px;
+    }
+    background: #f0f2f4;
+    position: relative;
+    display: block;
+    float: left;
+  }
+
+  .breadcrumb li span:after, .breadcrumb li span:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .breadcrumb li span:after {
+    border-left-color: #f0f2f4;
+    border-width: 30px;
+    margin-top: -30px;
+    @include respond(portrait-tablets) {
+      border-width: 10px;
+      margin-top: -10px;
+    }
+    z-index: 2;
+  }
+  .breadcrumb li span:before {
+    border-color: rgba(211, 214, 220, 0);
+    border-left-color: #d3d6dc;
+    border-width: 31px;
+    margin-top: -31px;
+    @include respond(portrait-tablets) {
+      border-width: 10px;
+      margin-top: -10px;
+    }
+    margin-left: 1px;
+    z-index: 1;
+  }
+
+  //last triangle
+  .breadcrumb li:last-child span:before {
+    border: none;
+  }
+
+  .breadcrumb li:first-child span {
+    padding-left: 25px;
+    @include respond(portrait-tablets) {
+      padding-left: 15px;
+    }
+  }
+
+  .breadcrumb li.current {
+    background-color: $white;
+  }
+  .breadcrumb li.current span{
+    background-color: $white;
+    color: #222628;
+  }
+  .breadcrumb li.current span:after{
+    border-left-color: $white;
+  }
+
+  .breadcrumb li.current:last-child span:after {
+    background: $white;
+  }
+
+  .breadcrumb li.completed {
+    background-color: $white;
+  }
+  .breadcrumb li.completed span{
+    background-color: $white;
+    color: #5fa60d;
+  }
+  .breadcrumb li.completed span:after{
+    border-left-color: $white;
+  }
+
+
+  .tos-row {
+    @include respond(all-phones) {
+      padding-left: 0 !important;
+    }
+  }
+
+  .tos-checkbox {
+    width: 10%;
+    float: left;
+    @include respond(all-phones) {
+      margin-right: 10%;
+    }
+  }
+
+  .tos-copy {
+    float: right;
+    width: 90%;
+    text-align: left;
+    @include respond(all-phones) {
+      width: 80%;
+    }
+  }
+
+  .market-copy {
+    float: right;
+    width: 90%;
+    text-align: left;
+    line-height: 35px;
+    padding-left: 20px;
+    @include respond(all-phones) {
+      width: 80%;
+    }
+  }
+
+  #app-callout{
+    padding: 15px 0;
+    @include respond(portrait-tablets) {
+      display: none;
+    }
+  }
+
+  .mmf-login {
+    max-width: 600px;
+    .logo {
+      margin-left: 0;
+      margin-right: 9px;
+      margin-top: 15px;
+    }
+
+    &.two.columns {
+      width: 12.27778%;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222628;
+    }
+
+    .details {
+      font-size: 16px;
+      font-weight: bold;
+      color: #222628;
+      margin-left: 0;
+    }
+
+    .info {
+      font-size: 12px;
+      color: #9297a3;
+      margin-left: 0;
+    }
+  }
+
+  .desktop-view{
+    @include respond(portrait-tablets) {
+      display: none;
+    }
+  }
+
+  .phone-view{
+    @include respond(desktop) {
+      display: none;
+    }
+    @include respond(tablets) {
+      display: none;
+    }
+  }
+
+  .login-failed-message {
+    font-size: 14px;
+    display: none;
+    margin-bottom: 0;
+    padding-top: 5px;
+  }
+
+  font-family: $font-light-condensed;
+
+  a {
+    color: $red-orange;
+    font-weight: bold;
+  }
+
+  hr{
+      margin: 0;
+      border-bottom: 0;
+      border-right: 0;
+      border-left: 0;
+      color: #d3d6dc;
+      @include respond(portrait-tablets) {
+        &.form-separator {
+          display: none;
+        }
+      }
+  }
+
+  .add-padding-bottom{
+    padding-bottom: 15px;
+  }
+
+  .add-bold {
+    font-weight: bold;
+  }
+
+  .align-contents-right{
+    text-align: right !important;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+
+    //to make the modal shift up
+    @include respond(desktop) {
+      position: initial;
+      margin-top: 10px;
+    }
+
+    @include respond(portrait-tablets) {
+      margin: 10px auto 0 auto;
+    }
+
+    .quit-login-registration-button{
+      padding: 0px;
+      color: white;
+
+      @include respond(portrait-tablets) {
+        padding-bottom: 10px;
+      }
+
+      .quit-button-column{
+        padding-bottom: 10px;
+
+        .x-button-container{
+          height: 33px;
+          width: 33px;
+          background: white;
+          float: right;
+          border-radius: 50%;
+        }
+
+      }
+
+    }
+
+    .modal-body{
+      position: relative;
+      background: transparent;
+      padding: 20px;
+
+      @include respond(portrait-tablets) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    .loading {
+      background: url('../img/ajax-loader.gif') center center no-repeat;
+      z-index: 99999;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0.5;
+      background-color: $darker-grey;
+    }
+
+    .header{
+
+      @include respond(portrait-tablets) {
+        padding-bottom: 0;
+      }
+
+      h1 {
+        font-family: $font-family;
+        color: #222628;
+        padding: 0;
+        font-size: 24px;
+        font-weight: bold;
+        padding-top: 25px;
+
+        @include respond(portrait-tablets) {
+          font-size: 26px;
+        }
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+      }
+    }
+
+    .contents{
+
+      &.row {
+        max-width: 600px;
+      }
+
+      @include respond(portrait-tablets) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      // Start of Left column
+      .left-column{
+
+        //This is to solve the request of having the same height for both sections of the modal
+        &.registration-left-column{
+          @include respond(desktop) {
+            height: 608px;
+          }
+        }
+
+        &.login-left-column{
+          padding-left: 40px;
+          padding-right: 40px;
+        
+          @include respond(desktop) {
+            height: 515px;
+          }
+        }
+
+        @include respond(portrait-tablets) {
+          display: none;
+        }
+
+        border: 3px solid #d3d6dc;
+        padding: 30px 10px 0 10px;
+        text-align: center;
+
+        .ua-login{
+          .title{
+            font-size: 20px;
+            font-weight: bold;
+            color: #222628;
+
+            &.registration-title{
+              font-size: 22px;
+            }
+
+            span{
+              font-weight: bold;
+              color: black;
+            }
+
+          }
+          
+          .details{
+            margin-left: 0;
+            font-size: 14px;
+            line-height: 23px;
+            padding-top: 15px;
+            color: black;
+
+            span{
+              font-weight: bold;
+            }
+          }
+          
+          .logo{
+            padding-top:15px;
+            padding-bottom: 15px;
+            margin-left: 0;
+          }
+
+          .mmf_logo{
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+          }
+        }
+
+        .mmf-login{
+          padding-top: 20px;
+          margin-left: 0;
+          
+          .details{
+            font-size: 14px;
+            line-height: 28px;
+            padding-top: 15px;
+            color: black;
+            padding-bottom: 30px;
+
+            span{
+              font-weight: bold;
+            }
+
+          }
+        }
+
+        .more-details{
+          text-transform: none;
+          font-size: 12px;
+          padding-top: 20px;
+          padding-bottom: 30px;
+          line-height: 18px;
+          font-family: $font-family;
+          color: $light-gray;
+
+          .registration-detail{
+            padding-bottom: 9px;
+          }
+
+          .login-detail{
+            padding-bottom: 18px;
+
+            @include respond(desktop) {
+              margin-top: 10px;
+            }
+          }
+        }
+      }// End of Left column
+
+
+      //Start of the right column
+      .right-column{
+        
+        &.login-right-column{
+          @include respond(desktop) {
+            height: 515px;
+          }
+        }
+
+        background: $white;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+
+        @include respond(portrait-tablets) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        
+        //Facebook Column
+        .facebook-column {
+          text-align: center;
+          padding-top: 20px;
+
+          .button-wrapper{
+            background: $facebook-blue;
+            max-width: none;
+            border: 0px;
+            height: 48px;
+            margin-left: 0;
+
+            &.register-facebook-width {
+              width: 305px;
+              height: 50px;
+              @include respond(portrait-tablets) {
+                width: 100%;
+                font-family: $font-light-condensed;
+                font-size: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+            }
+
+            @include respond(portrait-tablets) {
+              width: auto;
+              height: 50px;
+            }
+
+            a {
+              position: relative;
+              font-family: $font-light-condensed;
+              font-size: 18px;
+              color: white;
+              line-height: 50px;
+              padding-left: 40px;
+
+              &:before {
+                left: 5%;
+                font-size: 20px;
+              };
+
+              @include respond(portrait-tablets) {
+                font-size: 16px;
+                padding-left: 36px;
+              }
+            }
+          }
+        }
+
+        //Or Column
+        .or-column {
+          padding-top: 20px;
+
+          @include respond(portrait-tablets) {
+            padding-top: 7px;
+          }
+
+          .separator{
+            padding-top: 11px;
+              @include respond(portrait-tablets) {
+                width: 20% !important;
+                float: left;
+              }
+          }
+
+          .or{
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #222628;
+            margin-top: 0;
+            @include respond(portrait-tablets) {
+              width: 60% !important;
+              float: left;
+            }
+          }
+          &.fb-error{
+            padding-top: 0px;
+          }
+        }
+
+        //phone view logos
+        .phone-view-logos{
+          display: none;
+
+          @include respond(portrait-tablets) {
+            display: block;
+            .columns {
+              text-align: center;
+
+              .separator{
+                display: inline-block;
+                border-right: 1px solid $image-separator-grey;
+                width: 1px;
+                height: 58px;
+              }
+
+            }
+          }
+        }
+
+        //text-snippet row
+        .text-snippet{
+          text-align: center;
+          font-size: 12px;
+          padding-top: 6px;
+          font-family: $font-family;
+          color: #222628;
+          line-height: 20px;
+
+          a.register {
+            color: $danger-red;
+          }
+
+          hr{
+            padding-top: 20px;
+          }
+
+          span{
+            font-weight: bold;
+          }
+
+          @include respond(portrait-tablets) {
+            padding: 0 10px;
+          }
+
+          &.already-have-account {
+            font-family: $font-family;
+            font-size: 13px;
+            color: #222628;
+            a {
+              font-weight: bold;
+              color: $danger-red;
+            }
+          }
+
+          &.register-with-email {
+            font-weight: bold;
+            font-size: 15px;
+          }
+
+          &.all-fields-required-snippet {
+            font-size: 13px;
+          }
+
+          &.terms-conditions {
+            color: #9297a3;
+            padding-top:20px;
+            font-family: $font-condensed;
+          }
+        }
+
+        .register-failed-message {
+          margin-top: 30px;
+          @include respond(all-phones) {
+            font-size: 13px;
+          }
+        }
+
+        .common-control-btn {
+          &.registration-btn{
+            width: 300px;
+            height: 50px;
+            font-size: 24px;
+            margin-bottom: 7px;
+            @include respond(portrait-tablets) {
+              font-size: 20px;
+              width: 100%;
+            }
+
+            input {
+              padding-top: 0;
+              font-size: 22px;
+              &:focus {
+                outline: none;
+              }
+            }
+
+            button {
+              font-size: 18px;
+              font-weight: bold;
+            }
+          }
+        }
+
+        //Input Fields Rows
+        .input-fields {
+          margin-top: 16px;
+
+          .field {
+            margin-bottom: 20px;
+
+            @include respond(portrait-tablets) {
+              margin-bottom: 8px;
+            }
+          }
+
+          @include respond(portrait-tablets) {
+            margin-top: 6px;
+          }
+
+          @include placeholder {
+            color: #777777;
+          }
+
+          label {
+            color: #9297a3;
+            font-size: 14px;
+            margin-bottom: 0;
+            font-family: $font-light-condensed;
+            background-color: $white;
+            border-radius: 0px;
+          }
+
+          input {
+           border-radius: 0px;
+           height: 45px;
+           font-size: x-large;
+           font-family: $font-light-condensed;
+           background-color: $white;
+           color: #222628;
+           padding: 4px 20px 0 20px;
+          }
+
+          .login-form-separator {
+            margin-left: 14px;
+            margin-right: 14px;
+            margin-bottom: 30px;
+            @include respond(portrait-tablets) {
+              display: none;
+            }
+          }
+
+          .common-control-btn {
+
+            &.common-control-btn-login {
+              width: 100%;
+              height: 50px;
+              font-size: 22px;
+              margin-bottom: 8px;
+              margin-left: 0;
+
+              button {
+                padding-top: 0;
+                font-size: 22px;
+              }
+            }
+
+          }
+
+          .higlighted{
+           background-color: $black-0e0e0e;
+           color: $grey-E7E7E7;
+          }
+
+          .forget-password{
+            @include respond(portrait-tablets) {
+              padding-bottom: 15px;
+            }
+            .text-snippet{
+              padding-top: 10px;
+              font-family: $font-family;
+              font-size: 14px;
+              color: $danger-red;
+            }
+          }
+
+          .no-margin-bottom{
+            margin-bottom: 0px;
+          }
+
+          .email, .password, .password-confirmation, .gender-birthdate {
+            margin-left: 0;
+            margin-top: 0;
+          }
+
+          .text-snippet {
+            padding-top: 15px;
+          }
+
+          .gender-birthdate{
+            #birthdate_selection {
+              background: $grey-E7E7E7;
+              height: 45px;
+              
+              label {
+                display: inline;
+                padding: 0;
+                line-height: 48px;
+              }
+              select {
+                width: 43px;
+                position: relative;
+                top: -3px;
+                font-size: .6rem;
+
+                &#id_birthdate_year {
+                  width: 45px;
+                }
+              }
+            }
+            .birthdate {
+              height: 45px;
+
+              @include respond(portrait-tablets) {
+                margin-top: 8px;
+              }
+            }
+            
+            .gender .row{
+              height: 45px;
+              background: $white;
+              display: flex;
+
+              .field{
+                margin-bottom: 0;
+              }
+
+              input[type=radio] {
+                display: none;
+              }
+
+              input:checked + label {
+                background: #5fa60d;
+                color: white;
+              }
+
+              label {
+                color: #9297a3;
+                font-family: $font-light-condensed;
+                font-size: x-large;
+                padding-left: 9px;
+                text-align: center;
+                cursor: pointer;
+                width: 49%;
+                border: 1px solid #d8d8d8;
+                input {
+                  border: 0;
+                }
+              }
+
+              .male, .female{
+                height: 100%;
+                width: 48%;
+                display: inline-block;
+
+                @include respond(portrait-tablets) {
+                  height: 45px;
+                }
+              }
+
+              .female{
+                margin-left: 0;
+                background-color: $grey-E7E7E7;
+                border-left: 1px solid $grey-C2C2C2;
+              }
+
+            }
+          }
+         }//End of input fields
+
+
+        .control-btn-wrapper{
+          text-align: center;
+          padding-top: 15px;
+        }
+
+        .login-control-btn{
+          @include respond(portrait-tablets) {
+            text-align: center;
+          }
+        }
+        
+      }//End of the right column
+
+
+      //Footer
+      .footer {
+        text-align: center;
+        padding-bottom: 100px;
+        display: inline-block;
+        margin-top: 20px;
+
+        .text-snippet{
+          font-family: $font-family;
+          font-size: 14px;
+          color: $light-gray;
+          @include respond(portrait-tablets) {
+            font-size: 13px;
+            a {
+              color: $danger-red;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.forgot-password .content {
+  h4 {
+    font-size: 24px;
+    color: #222628;
+    font-weight: bold;
+  }
+
+  label {
+    text-align: left;
+    color: #9297a3;
+    font-size: 14px;
+    margin-bottom: 0;
+    font-family: $font-light-condensed;
+    background-color: $white;
+    border-radius: 0px;
+  }
+
+  input {
+      border: 1px solid #d3d6dc;
+      height: 45px;
+      font-size: x-large;
+      font-family: $font-light-condensed;
+      background-color: $white;
+      color: #222628;
+      padding: 4px 20px 0 20px;
+  }
+
+  .cancel-button {
+    margin-left: 0;
+    padding-top: 10px;
+  }
+}
+
+.forgot-password .content,
+.password-reset .content {
+  min-height: 290px;
+
+  p {
+    color: #222628;
+    padding: 0 !important;
+    font-size: 18px !important;
+  }
+}
+
+// Override the horrible default placement
+.js .field .radio.checked i {
+  top: 0px !important;
+  left: -10px !important;
+}
+
+.field.danger:after, .field.success:after {
+  font-size: 20px !important;
+  top: 10px !important;
+}
